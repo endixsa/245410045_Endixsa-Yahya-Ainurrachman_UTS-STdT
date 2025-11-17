@@ -86,7 +86,7 @@ Konfigurasi Replica
 replica/conf/replica.conf
 hot_standby = on
 
-🧨 Membuat Script LF di Linux
+Membuat Script LF di Linux
 
 ⚠ Penting (Windows Users): Script harus dibuat di Linux agar bebas CRLF/BOM.
 
