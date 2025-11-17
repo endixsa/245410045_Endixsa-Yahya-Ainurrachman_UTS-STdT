@@ -18,47 +18,23 @@ Tiga keterkaitan utamanya adalah:
 
 ## 2. Diagram Keterkaitan
 
-```mermaid
-graph TD
-    subgraph "Proses 1: Client Side"
-        Client[Web / Mobile App]
-    end
-
-    subgraph "Jalur Komunikasi (IPC)"
-        HTTP_Request[HTTP Request (Query GraphQL)]
-        HTTP_Response[HTTP Response (JSON Data)]
-    end
-
-    subgraph "Proses 2: GraphQL Gateway"
-        GQL_Server[GraphQL Server]
-        Schema[Schema Definition]
-        Resolver[Resolvers]
-    end
-
-    subgraph "Proses 3 & 4: Backend Services"
-        ServiceA[Microservice User]
-        ServiceB[Microservice Product]
-        DB[(Database)]
-    end
-
-    %% Alur Komunikasi
-    Client -- "1. Kirim Query Spesifik" --> HTTP_Request
-    HTTP_Request --> GQL_Server
-    GQL_Server -- "2. Validasi Schema" --> Schema
-    GQL_Server -- "3. Delegasi Data" --> Resolver
-    
-    Resolver -- "4. Fetch Data (via gRPC)" --> ServiceA
-    Resolver -- "5. Fetch Data (via TCP/SQL)" --> DB
-    Resolver -- "6. Fetch Data (via REST)" --> ServiceB
-    
-    ServiceA & DB & ServiceB -- "7. Kirim Raw Data" --> Resolver
-    Resolver -- "8. Agregasi & Filter" --> GQL_Server
-    GQL_Server -- "9. Kirim Data Final" --> HTTP_Response
-    HTTP_Response --> Client
-
-    style GQL_Server fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    style Client fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    style Resolver fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
++-----------------+          +--------------------------------------------------+
+|    CLIENT       |          |               GRAPHQL SERVER                     |
+| (Proses A)      |          |                 (Proses B)                       |
++--------+--------+          +-----------------------+--------------------------+
+         |                                           |
+  1. HTTP Request                                    | 3. Agregasi & Logika
+     (Query)                                         v
+         |                   +-----------------------+--------------------------+
+         +------------------>|                    RESOLVER                      |
+                             +----+------------------+---------------------+----+
+                                  |                  |                     |
+                         4. gRPC  |          5. REST |             6. TCP  |
+                                  v                  v                     v
+                     +------------+---+      +-------+-------+     +-------+------+
+                     | Microservice A |      | Microservice B|     |   Database   |
+                     |   (Proses C)   |      |   (Proses D)  |     |  (Proses E)  |
+                     +----------------+      +---------------+     +--------------+
 
 ## Penjelasan diagram
 1. Inisiasi (Proses 1 ke 2): Client mengirim pesan IPC (biasanya via HTTP) berisi Query GraphQL. Ini berisi daftar spesifik data yang diminta.
