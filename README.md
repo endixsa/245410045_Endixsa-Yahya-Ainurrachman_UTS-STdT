@@ -6,4 +6,4 @@ Soal :
 3. Dengan menggunakan Docker / Docker Compose, buatlah streaming replication di PostgreSQL yang bisa menjelaskan sinkronisasi. Tulislah langkah-langkah pengerjaannya dan buat penjelasan secukupnya.
 
 Jawaban :
-1. 
+1. vv
