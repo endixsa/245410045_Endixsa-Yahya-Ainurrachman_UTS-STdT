@@ -22,18 +22,18 @@ Tiga keterkaitan utamanya adalah:
 graph TD
     %% Definisi Node dan Style
     subgraph Client_Layer [Layer 1: Client / Proses A]
-        Client[Aplikasi Web/Mobile]
+        Client["Aplikasi Web/Mobile"]
     end
 
     subgraph Gateway_Layer [Layer 2: GraphQL Gateway / Proses B]
-        GQL[GraphQL Server]
-        Resolver[Resolver Logic]
+        GQL["GraphQL Server"]
+        Resolver["Resolver Logic"]
     end
 
     subgraph Service_Layer [Layer 3: Backend Services / Proses C, D, E]
-        SvcA[User Service<br>(gRPC)]
-        SvcB[Product Service<br>(REST)]
-        DB[(Database)]
+        SvcA["User Service<br>(gRPC)"]
+        SvcB["Product Service<br>(REST)"]
+        DB[("Database")]
     end
 
     %% Alur Komunikasi (IPC)
@@ -49,11 +49,11 @@ graph TD
     Resolver -- "6. Agregasi Data" --> GQL
     GQL -- "7. HTTP Response (JSON)" --> Client
 
-    %% Pewarnaan Sederhana untuk GitHub (Aman untuk Light/Dark Mode)
+    %% Pewarnaan
     style GQL fill:#6E44FF,color:#fff,stroke:#fff
     style Resolver fill:#B19CD9,color:#000,stroke:#333
     style Client fill:#333,color:#fff,stroke:#fff
-```
+
 ## Penjelasan diagram
 1. Inisiasi (Proses 1 ke 2): Client mengirim pesan IPC (biasanya via HTTP) berisi Query GraphQL. Ini berisi daftar spesifik data yang diminta.
 2. Validasi & Resolusi (Proses 2): Server GraphQL menerima pesan dan mengecek Schema (kontrak) untuk memastikan permintaan valid.
