@@ -88,7 +88,7 @@ hot_standby = on
 
 Membuat Script LF di Linux
 
-⚠ Penting (Windows Users): Script harus dibuat di Linux agar bebas CRLF/BOM.
+Penting : Script harus dibuat di Linux agar bebas CRLF/BOM.
 
 Jalankan perintah ini dari PowerShell / CMD dalam folder project:
 
