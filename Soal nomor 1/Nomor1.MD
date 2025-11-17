@@ -32,7 +32,7 @@ Hubungannya sangat erat: **BASE adalah implementasi praktis dari sistem yang mem
 
 | Kategori | Filosofi | Contoh Teknologi |
 | :--- | :--- | :--- |
-| **SQL (RDBMS)** | Cenderung **ACID** (Pilih Konsistensi/CP) | MySQL, PostgreSQL, Oracle |
+| **SQL (RDBMS)** | Cenderung **CAP** (Pilih Konsistensi/CP) | MySQL, PostgreSQL, Oracle |
 | **NoSQL** | Cenderung **BASE** (Pilih Ketersediaan/AP) | Cassandra, DynamoDB, MongoDB |
 
 ---
