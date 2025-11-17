@@ -53,7 +53,7 @@ graph TD
     style GQL fill:#6E44FF,color:#fff,stroke:#fff
     style Resolver fill:#B19CD9,color:#000,stroke:#333
     style Client fill:#333,color:#fff,stroke:#fff
-
+```
 ## Penjelasan diagram
 1. Inisiasi (Proses 1 ke 2): Client mengirim pesan IPC (biasanya via HTTP) berisi Query GraphQL. Ini berisi daftar spesifik data yang diminta.
 2. Validasi & Resolusi (Proses 2): Server GraphQL menerima pesan dan mengecek Schema (kontrak) untuk memastikan permintaan valid.
