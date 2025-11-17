@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  primary:
+    image: postgres:15
+    container_name: pg-primary
+    environment:
+      POSTGRES_PASSWORD: primarypass
+    volumes:
+      - ./primary/data:/var/lib/postgresql/data
+      - ./primary/conf:/etc/postgresql/conf.d
+      - ./primary/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+
+  replica:
+    image: postgres:15
+    container_name: pg-replica
+    environment:
+      POSTGRES_PASSWORD: replicapass
+    volumes:
+      - ./replica/data:/var/lib/postgresql/data
+      - ./replica/conf:/etc/postgresql/conf.d
+      - ./replica/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
+    depends_on:
+      - primary
